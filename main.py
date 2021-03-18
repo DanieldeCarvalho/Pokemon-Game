@@ -1,16 +1,43 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from pokemon import *
+from pessoa import *
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def escolher_pokemon_inicial(player):
+    print(f'Olá {player}, você pdoer[a escolher agora o pokemon que irálhe acompanhar nesta jornada!')
+
+    pikachu = PokemonEletrico('Pikachu', level= 1)
+    charmander = PokemonFogo('Charmander', level= 1)
+    squirtle  = PokemonAgua('Squirtle', level= 1)
+
+    print('Qual pokemon você deseja?: ')
+    print('1 -', pikachu)
+    print('2 -', charmander)
+    print('3 -', squirtle)
+
+    while True:
+        escolha = input('Escolha o seu pokemon: ')
+
+        if escolha == '1':
+            player.capturar(pikachu)
+            break
+        if escolha == '2':
+            player.capturar(charmander)
+            break
+        if escolha == '3':
+            player.capturar(squirtle)
+            break
+        else:
+            print('escolha inválida')
+
+# escolher_pokemon_inicial(player)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+player = Player('Daniel')
+player.capturar(PokemonFogo('Charmander', level=1))
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+inimigo1 = Inimigo(nome='Gary', pokemons=(PokemonAgua('Squirtle', level=1)))
+print(inimigo1)
+inimigo1.mostrar_pokemons()
+
+# 01:29:34
+# fazer a funcao batalhar
