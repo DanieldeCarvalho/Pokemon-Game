@@ -38,4 +38,7 @@ inimigo1 =Inimigo(nome='Gary', pokemons=[PokemonAgua('Squirtle', level=1)])
 
 player.batalhar(inimigo1)
 
-# 1: 57: 00
+# 1: 57: 0
+#
+#
+# no linux
