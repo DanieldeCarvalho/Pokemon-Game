@@ -29,15 +29,13 @@ def escolher_pokemon_inicial(player):
         else:
             print('escolha inválida')
 
-# escolher_pokemon_inicial(player)
 
 
 player = Player('Daniel')
 player.capturar(PokemonFogo('Charmander', level=1))
 
-inimigo1 = Inimigo(nome='Gary', pokemons=(PokemonAgua('Squirtle', level=1)))
-print(inimigo1)
-inimigo1.mostrar_pokemons()
+inimigo1 =Inimigo(nome='Gary', pokemons=[PokemonAgua('Squirtle', level=1)])
 
-# 01:29:34
-# fazer a funcao batalhar
+player.batalhar(inimigo1)
+
+# 1: 57: 00

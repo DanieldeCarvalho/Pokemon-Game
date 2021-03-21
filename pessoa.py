@@ -1,8 +1,10 @@
 import random
 from pokemon import *
 
+
 NOMES = ['Guilherme', 'Patricia', 'João', 'Matheus', 'Maria', 'Antonio',
          'Gustavo', 'Marcelo', 'Lorena', 'Miguel']
+
 
 POKEMONS = [
     PokemonFogo('Charmander'),
@@ -13,6 +15,7 @@ POKEMONS = [
     PokemonAgua('Squirtle'),
     PokemonAgua('Magicarp'),
 ]
+
 
 class Pessoa:
     def __init__(self, nome=None, pokemons=[]):  # pokemon igual a lista
@@ -27,12 +30,43 @@ class Pessoa:
         return self.nome
 
     def mostrar_pokemons(self):
-        if self.pokemons:
+        if self.pokemons: #se tiver pokemons
             print(f'Pokemons de {self}:')
-            for pokemon in self.pokemons:
-                print(pokemon)
+            for index, pokemon in enumerate(self.pokemons):
+                print(f'{index} -- {pokemon}')
         else:
             print(f'{self} não tem nenhum pokemon.')
+
+    def escolher_pokemon(self):
+        if self.pokemons:
+            pokemon_escolhido = random.choice(self.pokemons)
+            print(f'{self} escolheu {pokemon_escolhido}')
+            return pokemon_escolhido
+        else:
+            print('ERRO: este jogador não possui nenhum pokemon para ser escolhido')
+
+    def batalhar(self, pessoa):
+        print(f'{self} Iniciou uma batalha com {pessoa}')
+
+        pessoa.mostrar_pokemons()
+        pokemon_inimigo = pessoa.escolher_pokemon()
+
+        pokemon = self.escolher_pokemon()
+
+        if pokemon and pokemon_inimigo:
+            while True:
+                vitoria = pokemon.atacar(pokemon_inimigo)
+                if vitoria:
+                    break
+                vitoria_inimiga = pokemon_inimigo.atacar(pokemon)
+                if vitoria_inimiga:
+                    break
+                pass
+        else:
+            print('Essa batalha não pode ocorrer')
+
+
+
 
 class Player(Pessoa):
     tipo = 'Player'
@@ -40,6 +74,26 @@ class Player(Pessoa):
     def capturar(self,pokemon):
         self.pokemons.append(pokemon)
         print(f'{self} Capturou {pokemon}')
+
+    def escolher_pokemon(self):
+        self.mostrar_pokemons()
+        if self.pokemons:
+            while True:
+                escolha = input('Escolha o seu pokemon: ')
+                try:
+                    escolha= int(escolha)
+                    pokemon_escolhido = self.pokemons[escolha] #colchetes ja que e para acessar indice
+                    print(f'{pokemon_escolhido} Pokemon eu escolho você!!')
+                    return pokemon_escolhido
+                    # escolha= int(escolha) #teste de codigo
+                    # self.pokemons[escolha]
+                    # print(f'{self.pokemons[escolha]} eu escolho você!')
+                    # break
+                except:
+                    print('escolha invalida')
+        else:
+            print('ERRO: este jogador não possui nenhum pokemon para ser escolhido')
+
 
 class Inimigo(Pessoa):
     tipo = 'Inimigo'
