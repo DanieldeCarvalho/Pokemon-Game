@@ -20,8 +20,8 @@ class Pokemon:
         return (f'{self.nome} ({self.level})')
 
     def atacar(self, pokemon):
-        pokemon.vida -= self.ataque
-        print(f'{pokemon} perdeu {self.ataque} pontos de vida')
+        pokemon.vida -= int(self.ataque * random.random() * 1.5)
+        print(f'{pokemon} perdeu {int(self.ataque * random.random() * 1.5)} pontos de vida')
 
         if pokemon.vida <= 0:
             print(f'{pokemon} foi derrotado')
@@ -34,21 +34,21 @@ class PokemonEletrico(Pokemon):
 
     def atacar(self, pokemon):
         print(f'{self} lançou um raio do trovão em {pokemon}')
-        super().atacar(pokemon)
+        return super().atacar(pokemon)
 
 class PokemonFogo(Pokemon):
     tipo = 'fogo'
 
     def atacar(self, pokemon):
         print(f'{self} jogou uma bola de fogo em {pokemon}')
-        super().atacar(pokemon)
+        return super().atacar(pokemon)
 
 class PokemonAgua(Pokemon):
     tipo = 'agua'
 
     def atacar(self, pokemon):
         print(f'{self} lançou um jato de água em {pokemon}')
-        super().atacar(pokemon)
+        return super().atacar(pokemon)
 
 
 # 20:06
