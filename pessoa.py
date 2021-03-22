@@ -105,12 +105,31 @@ class Player(Pessoa):
         else:
             print('ERRO: este jogador não possui nenhum pokemon para ser escolhido')
 
+    def explorar(self):
+        if random.random() <= 0.3:
+            pokemon = random.choice(POKEMONS)
+            print(f'Um pokemon selvagem apareceu: {pokemon}')
+
+            escolha = input('Deseja capturar pokemon? (s/n):')
+            if escolha == 's':
+                if random.random() <= 0.3:
+                    self.capturar(pokemon)
+                else:
+                    print(f'{pokemon} fugiu! ')
+            else:
+                print('Ok, boa viagem')
+        else:
+            print('Esta exploracao nao deu em nada')
+
 
 class Inimigo(Pessoa):
     tipo = 'Inimigo'
 
-    def __init__(self, nome=None, pokemons=[]):
+    def __init__(self, nome=None, pokemons=None):
         if not pokemons: # se nao tiver pokemons
+            pokemons_aleatorios = []
             for i in range(random.randint(1, 6)): # quero que o inimigo tenha de 1 a 6 pokemons
-                pokemons.append(random.choice(POKEMONS))
+                pokemons_aleatorios.append(random.choice(POKEMONS))
         super().__init__(nome=nome, pokemons=pokemons) # chama a funcao de inicializar superior
+        else:
+            super().__init__(nome=nome, pokemons=pokemons )
