@@ -51,36 +51,36 @@ def carregar_jogo():
         print('Save nao encontrado')
         print(error)
 
+def inicio_jogo():
+    nome = input('Ola, qual o seu nome?:  ')
+    player = Player(nome, pokemons=[], dinheiro=0)
+
+    print(f'Ola {nome} Bem vindo ao mundo pokemon. sua missao e se tornar um metre dos pokemons')
+    print('capture o maximo de pokmeons que conseguir e lute com seus inimigos')
+    player.mostrar_dinheiro()
+
+    print('Voce nao tem nenhum pokemon. portando escolha um para comecar sua jornada:')
+    escolher_pokemon_inicial(player)
+
+    print('Pronto, agora que voce ja possui um pokemon, enfrente seu primeiro rival Gary ')
+    gary = Inimigo(nome='Gary', pokemons=[PokemonAgua('Squirtle', level=1)])
+    player.batalhar(gary)
+    salvar_jogo(player)
+
 if __name__ == '__main__':
     print('Bem vindo ao game Pokemon de terminal')
 
     player = carregar_jogo()
 
     if not player:
-        nome = input('Ola, qual o seu nome?:  ')
-        player = Player(nome)
-
-        print(f'Ola {nome} Bem vindo ao mundo pokemon. sua missao e se tornar um metre dos pokemons')
-        print('capture o maximo de pokmeons que conseguir e lute com seus inimigos')
-        player.mostrar_dinheiro()
-
-        if player.pokemons:
-            print('Ja vi que voce tem alguns pokemons')
-            player.mostrar_pokemons()
-        else:
-            print('Voce nao tem nenhum pokemon. portando escolha um para comecar sua jornada:')
-            escolher_pokemon_inicial(player)
-
-        print('Pronto, agora que voce ja possui um pokemon, enfrente seu primeiro rival Gary ')
-        gary =Inimigo(nome='Gary', pokemons=[PokemonAgua('Squirtle', level=1)])
-        player.batalhar(gary)
-        salvar_jogo(player)
+        inicio_jogo()
 
     while True:
         print('\n>>> O que deseja fazer? ')
         print('1 - Explorar o mundo ')
         print('2 - Lutar com um inimigo ')
         print('3 - Ver Pokeagenda ')
+        print('4 - Comecar novo jogo ')
         print('0 - Sair do jogo ')
         escolha = input('Sua escolha: ')
 
@@ -96,6 +96,8 @@ if __name__ == '__main__':
             salvar_jogo(player)
         elif escolha == '3':
             player.mostrar_pokemons()
+        elif escolha == '4':
+            inicio_jogo()
         else:
             print('>>> opcao invalida')
 
