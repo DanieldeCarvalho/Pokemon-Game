@@ -2,7 +2,7 @@ import random
 from pokemon import *
 
 
-NOMES = ['Guilherme', 'Patricia', 'João', 'Matheus', 'Maria', 'Antonio',
+NOMES = ['Amaro', 'Patricia', 'João', 'Matheus', 'Maria', 'Antonio',
          'Gustavo', 'Marcelo', 'Lorena', 'Miguel']
 
 
@@ -57,7 +57,7 @@ class Pessoa:
         self.mostrar_dinheiro()
 
     def batalhar(self, inimigo):
-        print(f'{self} Iniciou uma batalha com {inimigo}')
+        print(f'\n{self} Iniciou uma batalha com {inimigo}')
 
         inimigo.mostrar_pokemons()
         pokemon_inimigo = inimigo.escolher_pokemon()
@@ -130,6 +130,6 @@ class Inimigo(Pessoa):
             pokemons_aleatorios = []
             for i in range(random.randint(1, 6)): # quero que o inimigo tenha de 1 a 6 pokemons
                 pokemons_aleatorios.append(random.choice(POKEMONS))
-        super().__init__(nome=nome, pokemons=pokemons) # chama a funcao de inicializar superior
+            super().__init__(nome=nome, pokemons=pokemons) # chama a funcao de inicializar superior
         else:
-            super().__init__(nome=nome, pokemons=pokemons )
+            super().__init__(nome=nome, pokemons=pokemons)
